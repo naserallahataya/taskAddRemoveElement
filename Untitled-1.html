@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة عناصر ديناميكية</title>
+    <style>
+        body {
+            font-family: Tahoma, Arial;
+            background: #f5f5f5;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #3498db;
+            color: white;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            color: white;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+
+        .green {
+            background: #1abc9c;
+        }
+
+        .red {
+            background: #e74c3c;
+        }
+
+        .delete-btn {
+            background: #fff;
+            color: #333;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+        }
+
+        .delete-btn:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>إضافة عناصر ديناميكية</h2>
+    <button onclick="addItem('start')"> add a new element in front         </button>
+    <button onclick="addItem('end')"> add a new element in end </button>
+
+    <div id="container"></div>
+
+    <script>
+        let count = 1;
+
+        function addItem(position) {
+             let newItem = document.createElement("div");
+            newItem.className = "item " + (count % 2 === 0 ? "red" : "green");
+            newItem.textContent = "add new element  " + count;
+
+             let delBtn = document.createElement("button");
+            delBtn.textContent = "remove ";
+            delBtn.className = "delete-btn";
+            delBtn.onclick = function () {
+                newItem.remove();
+            };
+
+             newItem.appendChild(delBtn);
+
+             let container = document.getElementById("container");
+            if (position === "start") {
+                container.prepend(newItem);
+            } else {
+                container.appendChild(newItem);
+            }
+
+            count++;
+        }
+    </script>
+
+
+</body>
+
+</html>
